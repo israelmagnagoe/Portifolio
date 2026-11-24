@@ -3,464 +3,309 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfólio · Analista de Dados</title>
+<title>Israel Magnago · Business Intelligence com Power BI</title>
+<meta name="description" content="Dashboards em Power BI para vendas, metas, margem e financeiro — do dado no ERP ao painel pronto para decidir. Projetos de BI sob demanda na Grande Vitória e em todo o Brasil.">
+<meta property="og:title" content="Israel Magnago · Business Intelligence com Power BI">
+<meta property="og:description" content="Dashboards em Power BI para vendas, metas, margem e financeiro. Projetos de BI sob demanda.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="PLANEJAMENTO%20COMERCIAL.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  /* ── RESET & BASE ──────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg:       #0a0a0f;
-    --surface:  #111118;
-    --card:     #161622;
-    --border:   rgba(255,255,255,0.07);
-    --border2:  rgba(255,255,255,0.13);
-    --accent:   #6C63FF;
-    --accent2:  #00D4A0;
-    --text:     #EEEEF2;
-    --muted:    #8888A0;
-    --faint:    #3a3a55;
-    --font-h:   'Syne', sans-serif;
-    --font-b:   'DM Sans', sans-serif;
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-b);
-    font-size: 16px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-  a { color: inherit; text-decoration: none; }
-  img { max-width: 100%; }
+/* ── RESET & BASE ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --card: #161622;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --accent: #6C63FF;
+  --accent2: #00D4A0;
+  --text: #EEEEF2;
+  --muted: #8888A0;
+  --faint: #3a3a55;
+  --font-h: 'Syne', sans-serif;
+  --font-b: 'DM Sans', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-b);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
 
-  /* ── NAV ──────────────────────────────────────────── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.2rem 6vw;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: var(--font-h);
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-  .nav-logo span { color: var(--accent2); }
-  .nav-links { display: flex; gap: 2rem; }
-  .nav-links a {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
+/* ── NAV ──────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 6vw;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: var(--font-h); font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; }
+.nav-logo span { color: var(--accent2); }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-size: 0.85rem; font-weight: 500; color: var(--muted);
+  letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
 
-  /* ── HERO ─────────────────────────────────────────── */
-  #hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    justify-content: center;
-    padding: 10rem 6vw 6rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-glow {
-    position: absolute;
-    width: 700px; height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
-    top: -100px; right: -200px;
-    pointer-events: none;
-  }
-  .hero-glow2 {
-    position: absolute;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,212,160,0.08) 0%, transparent 70%);
-    bottom: 0; left: -100px;
-    pointer-events: none;
-  }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(108,99,255,0.12);
-    border: 1px solid rgba(108,99,255,0.3);
-    border-radius: 100px;
-    padding: 6px 18px;
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: #a49eff;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    width: fit-content;
-    animation: fadeUp 0.8s ease both;
-  }
-  .hero-tag::before {
-    content: '';
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--accent2);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
-  h1.hero-title {
-    font-family: var(--font-h);
-    font-size: clamp(3rem, 7vw, 6.5rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-    animation: fadeUp 0.8s 0.1s ease both;
-  }
-  h1.hero-title em {
-    font-style: normal;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero-sub {
-    font-size: 1.15rem;
-    font-weight: 300;
-    color: var(--muted);
-    max-width: 560px;
-    margin-bottom: 3rem;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
-  .hero-ctas {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
-    font-family: var(--font-b);
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    border: none;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-  }
-  .btn-primary:hover { background: #7d76ff; transform: translateY(-2px); }
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border2);
-  }
-  .btn-outline:hover { border-color: var(--muted); transform: translateY(-2px); }
+/* ── HERO ─────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 10rem 6vw 6rem;
+  position: relative; overflow: hidden;
+}
+.hero-glow {
+  position: absolute; width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+  top: -100px; right: -200px; pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute; width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,160,0.08) 0%, transparent 70%);
+  bottom: 0; left: -100px; pointer-events: none;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(108,99,255,0.12);
+  border: 1px solid rgba(108,99,255,0.3);
+  border-radius: 100px; padding: 6px 18px;
+  font-size: 0.78rem; font-weight: 500; color: #a49eff;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 2rem; width: fit-content;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-tag::before {
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent2); animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+h1.hero-title {
+  font-family: var(--font-h);
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+h1.hero-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub {
+  font-size: 1.15rem; font-weight: 300; color: var(--muted);
+  max-width: 620px; margin-bottom: 3rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.3s ease both; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 0.85rem 2rem; border-radius: 8px;
+  font-family: var(--font-b); font-size: 0.9rem; font-weight: 500;
+  cursor: pointer; transition: all 0.2s; border: none;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #7d76ff; transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+.btn-outline:hover { border-color: var(--muted); transform: translateY(-2px); }
 
-  /* hero stats */
-  .hero-stats {
-    display: flex; gap: 3rem; flex-wrap: wrap;
-    margin-top: 5rem;
-    padding-top: 3rem;
-    border-top: 1px solid var(--border);
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
-  .stat-item {}
-  .stat-num {
-    font-family: var(--font-h);
-    font-size: 2.2rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .stat-label {
-    font-size: 0.82rem;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
+.hero-stats {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+  margin-top: 5rem; padding-top: 3rem;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+.stat-num {
+  font-family: var(--font-h); font-size: 2.2rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-label { font-size: 0.82rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* ── SECTIONS COMMON ──────────────────────────────── */
-  section { padding: 7rem 6vw; }
-  .section-tag {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 0.8rem;
-  }
-  .section-title {
-    font-family: var(--font-h);
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-  .section-desc {
-    color: var(--muted);
-    font-weight: 300;
-    max-width: 560px;
-    margin-bottom: 3.5rem;
-  }
+/* ── SECTIONS COMMON ──────────────────────────────── */
+section { padding: 7rem 6vw; }
+.section-tag {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent2); margin-bottom: 0.8rem;
+}
+.section-title {
+  font-family: var(--font-h); font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2;
+}
+.section-desc { color: var(--muted); font-weight: 300; max-width: 620px; margin-bottom: 3.5rem; }
 
-  /* ── SKILLS ──────────────────────────────────────── */
-  #skills { background: var(--surface); }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-  .skill-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .skill-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-  .skill-icon {
-    font-size: 1.8rem;
-    margin-bottom: 0.8rem;
-    display: block;
-  }
-  .skill-name {
-    font-family: var(--font-h);
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-  }
-  .skill-level {
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-bottom: 0.8rem;
-  }
-  .skill-bar {
-    height: 3px;
-    background: var(--faint);
-    border-radius: 100px;
-    overflow: hidden;
-  }
-  .skill-bar-fill {
-    height: 100%;
-    border-radius: 100px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-  }
+/* ── SERVICES ─────────────────────────────────────── */
+.services-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.25rem;
+}
+.service-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 1.75rem; transition: border-color 0.2s, transform 0.2s;
+}
+.service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+.service-icon {
+  width: 44px; height: 44px; border-radius: 10px; margin-bottom: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(108,99,255,0.12); color: #a49eff;
+}
+.service-icon svg { width: 22px; height: 22px; }
+.service-title { font-family: var(--font-h); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+.service-desc { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
 
-  /* ── PROJECTS ────────────────────────────────────── */
-  #projects {}
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 1.5rem;
-  }
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
-    display: flex; flex-direction: column;
-  }
-  .project-card:hover { border-color: var(--border2); transform: translateY(-6px); }
-  .project-thumb {
-    width: 100%; aspect-ratio: 16/9;
-    background: var(--surface);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 3rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .project-thumb-bg {
-    position: absolute; inset: 0;
-    opacity: 0.15;
-  }
-  .project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
-  .tag {
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    padding: 3px 10px;
-    border-radius: 100px;
-    border: 1px solid;
-  }
-  .tag-power-bi { color: #f2c811; border-color: rgba(242,200,17,0.3); background: rgba(242,200,17,0.07); }
-  .tag-python   { color: #4ec9b0; border-color: rgba(78,201,176,0.3); background: rgba(78,201,176,0.07); }
-  .tag-sql      { color: #9b8dff; border-color: rgba(155,141,255,0.3); background: rgba(155,141,255,0.07); }
-  .tag-excel    { color: #85d068; border-color: rgba(133,208,104,0.3); background: rgba(133,208,104,0.07); }
-  .tag-dax      { color: #ff8c5a; border-color: rgba(255,140,90,0.3); background: rgba(255,140,90,0.07); }
-  .project-title {
-    font-family: var(--font-h);
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.01em;
-  }
-  .project-desc { font-size: 0.88rem; color: var(--muted); font-weight: 300; flex: 1; margin-bottom: 1.5rem; }
-  .project-links { display: flex; gap: 0.75rem; margin-top: auto; }
-  .project-link {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 6px 14px;
-    transition: all 0.2s;
-  }
-  .project-link:hover { color: var(--text); border-color: var(--border2); }
-  .project-link.featured { color: var(--accent2); border-color: rgba(0,212,160,0.3); }
-  .project-link.featured:hover { background: rgba(0,212,160,0.06); }
+.steps {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem;
+  margin-top: 4rem; counter-reset: step;
+}
+.step { border-top: 1px solid var(--border2); padding-top: 1.25rem; counter-increment: step; }
+.step::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-h); font-weight: 700; font-size: 0.8rem; color: var(--accent2);
+  letter-spacing: 0.1em;
+}
+.step-title { font-family: var(--font-h); font-weight: 700; font-size: 1rem; margin: 0.4rem 0; }
+.step-desc { font-size: 0.86rem; color: var(--muted); font-weight: 300; }
 
-  /* ── FEATURED (large card) ────────────────────────── */
-  .project-card.featured-card {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    min-height: 280px;
-  }
-  .project-card.featured-card .project-thumb {
-    width: 40%; aspect-ratio: unset;
-    flex-shrink: 0;
-    font-size: 5rem;
-  }
-  .featured-badge {
-    position: absolute; top: 16px; left: 16px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #fff;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 100px;
-  }
+/* ── SKILLS ──────────────────────────────────────── */
+#skills { background: var(--surface); }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+.skill-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1.5rem; transition: border-color 0.2s, transform 0.2s;
+}
+.skill-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+.skill-icon { font-size: 1.8rem; margin-bottom: 0.8rem; display: block; }
+.skill-name { font-family: var(--font-h); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+.skill-level { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.8rem; }
+.skill-bar { height: 3px; background: var(--faint); border-radius: 100px; overflow: hidden; }
+.skill-bar-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
 
-  /* ── EXPERIENCE ───────────────────────────────────── */
-  #experience { background: var(--surface); }
-  .timeline { max-width: 760px; }
-  .timeline-item {
-    display: flex; gap: 2rem;
-    padding-bottom: 3rem;
-    position: relative;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 28px; bottom: 0;
-    width: 1px;
-    background: var(--border);
-  }
-  .timeline-left {
-    flex-shrink: 0;
-    width: 56px;
-    display: flex; flex-direction: column; align-items: center;
-    padding-top: 4px;
-  }
-  .timeline-dot {
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    background: var(--accent);
-    border: 3px solid var(--bg);
-    box-shadow: 0 0 0 1px var(--accent);
-    position: relative; z-index: 1;
-    flex-shrink: 0;
-  }
-  .timeline-right { flex: 1; }
-  .exp-period { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.3rem; }
-  .exp-title {
-    font-family: var(--font-h);
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 0.2rem;
-  }
-  .exp-company { font-size: 0.88rem; color: var(--accent2); margin-bottom: 0.8rem; }
-  .exp-desc { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
-  .exp-desc li { margin-bottom: 4px; list-style: none; padding-left: 1em; position: relative; }
-  .exp-desc li::before { content: '·'; position: absolute; left: 0; color: var(--accent2); }
+/* ── PROJECTS ────────────────────────────────────── */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+.project-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+  overflow: hidden; transition: border-color 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+}
+.project-card:hover { border-color: var(--border2); transform: translateY(-6px); }
+.project-thumb {
+  width: 100%; aspect-ratio: 16/9; background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.project-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+.tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em; padding: 3px 10px; border-radius: 100px; border: 1px solid; }
+.tag-power-bi { color: #f2c811; border-color: rgba(242,200,17,0.3); background: rgba(242,200,17,0.07); }
+.tag-sql { color: #9b8dff; border-color: rgba(155,141,255,0.3); background: rgba(155,141,255,0.07); }
+.tag-excel { color: #85d068; border-color: rgba(133,208,104,0.3); background: rgba(133,208,104,0.07); }
+.tag-dax { color: #ff8c5a; border-color: rgba(255,140,90,0.3); background: rgba(255,140,90,0.07); }
+.tag-pq { color: #4ec9b0; border-color: rgba(78,201,176,0.3); background: rgba(78,201,176,0.07); }
+.project-title { font-family: var(--font-h); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+.project-desc { font-size: 0.88rem; color: var(--muted); font-weight: 300; margin-bottom: 1rem; }
+.project-points { list-style: none; font-size: 0.85rem; color: var(--muted); font-weight: 300; margin-bottom: 1.5rem; }
+.project-points li { padding-left: 1em; position: relative; margin-bottom: 3px; }
+.project-points li::before { content: '·'; position: absolute; left: 0; color: var(--accent2); }
+.project-links { display: flex; gap: 0.75rem; margin-top: auto; flex-wrap: wrap; align-items: center; }
+.project-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; font-weight: 500; color: var(--accent2);
+  border: 1px solid rgba(0,212,160,0.3); border-radius: 6px;
+  padding: 6px 14px; transition: all 0.2s;
+}
+.project-link:hover { background: rgba(0,212,160,0.06); color: var(--text); }
+.project-link.disabled { color: var(--muted); border-color: var(--border); cursor: default; }
+.project-link.disabled:hover { background: none; color: var(--muted); }
+.data-note { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.03em; }
 
-  /* ── ABOUT ────────────────────────────────────────── */
-  #about {
-    display: flex; gap: 6vw; align-items: flex-start; flex-wrap: wrap;
-  }
-  .about-left { flex: 1; min-width: 280px; }
-  .about-right { flex: 1; min-width: 280px; }
-  .about-photo {
-    width: 100%; max-width: 380px;
-    aspect-ratio: 4/5;
-    border-radius: 16px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 6rem;
-    overflow: hidden;
-    position: relative;
-  }
-  .about-photo-placeholder {
-    text-align: center;
-    color: var(--faint);
-    font-size: 0.85rem;
-    font-weight: 300;
-  }
-  .about-photo-placeholder span { display: block; font-size: 5rem; margin-bottom: 1rem; }
-  .cert-grid { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
-  .cert-item {
-    display: flex; align-items: center; gap: 1rem;
-    padding: 1rem 1.25rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    transition: border-color 0.2s;
-  }
-  .cert-item:hover { border-color: var(--border2); }
-  .cert-icon { font-size: 1.5rem; flex-shrink: 0; }
-  .cert-info {}
-  .cert-name { font-size: 0.88rem; font-weight: 500; }
-  .cert-org { font-size: 0.78rem; color: var(--muted); }
+.project-card.featured-card { grid-column: 1 / -1; flex-direction: row; min-height: 280px; }
+.project-card.featured-card .project-thumb { width: 45%; aspect-ratio: unset; flex-shrink: 0; }
+.featured-badge {
+  position: absolute; top: 16px; left: 16px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
+}
 
-  /* ── CONTACT ─────────────────────────────────────── */
-  #contact { background: var(--surface); text-align: center; }
-  .contact-wrapper { max-width: 640px; margin: 0 auto; }
-  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
-  .contact-link {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 1rem 2rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.2s;
-  }
-  .contact-link:hover { border-color: var(--accent); transform: translateY(-3px); }
-  .contact-link svg { width: 18px; height: 18px; }
+/* ── EXPERIENCE ───────────────────────────────────── */
+#experience { background: var(--surface); }
+.timeline { max-width: 760px; }
+.timeline-item { display: flex; gap: 2rem; padding-bottom: 3rem; position: relative; }
+.timeline-item::before { content: ''; position: absolute; left: 0; top: 28px; bottom: 0; width: 1px; background: var(--border); }
+.timeline-left { flex-shrink: 0; width: 56px; display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+.timeline-dot {
+  width: 14px; height: 14px; border-radius: 50%; background: var(--accent);
+  border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--accent);
+  position: relative; z-index: 1; flex-shrink: 0;
+}
+.timeline-right { flex: 1; }
+.exp-period { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.3rem; }
+.exp-title { font-family: var(--font-h); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem; }
+.exp-company { font-size: 0.88rem; color: var(--accent2); margin-bottom: 0.8rem; }
+.exp-desc { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
+.exp-desc li { margin-bottom: 4px; list-style: none; padding-left: 1em; position: relative; }
+.exp-desc li::before { content: '·'; position: absolute; left: 0; color: var(--accent2); }
 
-  /* ── FOOTER ──────────────────────────────────────── */
-  footer {
-    padding: 2rem 6vw;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
-  }
-  footer p { font-size: 0.8rem; color: var(--muted); }
+/* ── ABOUT ────────────────────────────────────────── */
+.about-wrap { display: flex; gap: 6vw; align-items: flex-start; flex-wrap: wrap; }
+.about-left { flex: 1; min-width: 280px; }
+.about-right { flex: 1; min-width: 280px; }
+.about-text { color: var(--muted); font-weight: 300; margin-bottom: 1.5rem; }
+.about-photo {
+  width: 100%; max-width: 380px; aspect-ratio: 4/5; border-radius: 16px;
+  background: var(--card); border: 1px solid var(--border); overflow: hidden;
+}
+.about-photo img { width: 100%; height: 100%; object-fit: cover; }
+.cert-grid { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
+.cert-item {
+  display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  transition: border-color 0.2s;
+}
+.cert-item:hover { border-color: var(--border2); }
+.cert-icon { font-size: 1.5rem; flex-shrink: 0; }
+.cert-name { font-size: 0.88rem; font-weight: 500; }
+.cert-org { font-size: 0.78rem; color: var(--muted); }
 
-  /* ── RESPONSIVE ──────────────────────────────────── */
-  @media (max-width: 700px) {
-    .project-card.featured-card { flex-direction: column; }
-    .project-card.featured-card .project-thumb { width: 100%; aspect-ratio: 16/9; }
-    nav .nav-links { display: none; }
-    .hero-stats { gap: 1.5rem; }
-  }
+/* ── CONTACT ─────────────────────────────────────── */
+#contact { background: var(--surface); text-align: center; }
+.contact-wrapper { max-width: 640px; margin: 0 auto; }
+.contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+.contact-link {
+  display: inline-flex; align-items: center; gap: 10px; padding: 1rem 2rem;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  font-size: 0.9rem; font-weight: 500; transition: all 0.2s;
+}
+.contact-link:hover { border-color: var(--accent); transform: translateY(-3px); }
+.contact-link svg { width: 18px; height: 18px; }
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer {
+  padding: 2rem 6vw; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+footer p { font-size: 0.8rem; color: var(--muted); }
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 760px) {
+  .project-card.featured-card { flex-direction: column; }
+  .project-card.featured-card .project-thumb { width: 100%; aspect-ratio: 16/9; }
+  nav .nav-links { display: none; }
+  .hero-stats { gap: 1.5rem; }
+  .projects-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -469,9 +314,9 @@
 <nav>
   <div class="nav-logo">ISRAEL MAGNAGO ELIZEU<span>.</span></div>
   <div class="nav-links">
-    <a href="#about">Sobre</a>
-    <a href="#skills">Habilidades</a>
+    <a href="#services">Serviços</a>
     <a href="#projects">Projetos</a>
+    <a href="#about">Sobre</a>
     <a href="#experience">Experiência</a>
     <a href="#contact">Contato</a>
   </div>
@@ -482,7 +327,7 @@
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
 
-  <div class="hero-tag">Disponível para oportunidades</div>
+  <div class="hero-tag">Projetos de BI sob demanda</div>
 
   <h1 class="hero-title">
     Transformando dados<br>
@@ -491,19 +336,18 @@
   </h1>
 
   <p class="hero-sub">
-    Analista de Dados especializado em Power BI, com foco em criar dashboards e relatórios que traduzem dados complexos em insights acionáveis para o negócio.
+    Dashboards em Power BI que mostram vendas, metas, margem e resultado financeiro de forma clara — do dado bruto no ERP até o painel pronto para decidir. Atendo empresas da Grande Vitória presencialmente e de todo o Brasil remotamente.
   </p>
 
   <div class="hero-ctas">
     <a href="#projects" class="btn btn-primary">Ver projetos →</a>
-    <a href="#contact" class="btn btn-outline">Entrar em contato</a>
+    <a href="#contact" class="btn btn-outline">Solicitar orçamento</a>
   </div>
 
   <div class="hero-stats">
-    <!-- ✏️ EDITE: substitua pelos seus números reais -->
     <div class="stat-item">
-      <div class="stat-num">2+</div>
-      <div class="stat-label">Anos de experiência</div>
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Anos com indicadores de negócio</div>
     </div>
     <div class="stat-item">
       <div class="stat-num">20+</div>
@@ -514,130 +358,60 @@
       <div class="stat-label">Empresas atendidas</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">5+</div>
-      <div class="stat-label">Ferramentas dominadas</div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Ponta a ponta: do SQL ao painel</div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" style="display:block; padding: 7rem 6vw; background: var(--surface);">
-  <div style="display:flex; gap: 6vw; align-items: flex-start; flex-wrap: wrap;">
-    <div class="about-left">
-      <div class="section-tag">Sobre mim</div>
-      <h2 class="section-title">Quem sou eu</h2>
-      <!-- ✏️ EDITE: escreva seu próprio texto -->
-      <p style="color:var(--muted); font-weight:300; margin-bottom:1.5rem;">
-        Sou analista de dados com mais de 2 anos de experiência, apaixonado por transformar dados brutos em histórias visuais que orientam decisões estratégicas. Trabalho especialmente com Power BI e SQL para criar soluções que unem rigor técnico com clareza visual.
-      </p>
-      <p style="color:var(--muted); font-weight:300; margin-bottom:1.5rem;">
-        Acredito que um bom dashboard não é apenas bonito — ele precisa responder perguntas de negócio antes mesmo que alguém as faça. Por isso, meu processo começa sempre no entendimento do problema, não na ferramenta.
-      </p>
-      <p style="color:var(--muted); font-weight:300;">
-        <!-- ✏️ EDITE: formação acadêmica -->
-        Graduado em Administração pela Doctum (2023). Pós-graduando em MBA Gestão de Estratégia Empresarial pela Doctum.
-      </p>
+<!-- SERVICES -->
+<section id="services" style="background: var(--surface);">
+  <div class="section-tag">Serviços</div>
+  <h2 class="section-title">O que eu faço pela sua empresa</h2>
+  <p class="section-desc">
+    Implantação de business intelligence com Power BI: eu cuido dos dados, do modelo e do painel, para que você e sua equipe foquem na decisão.
+  </p>
 
-      <!-- CERTIFICAÇÕES -->
-      <div style="margin-top: 3rem;">
-        <div class="section-tag">Certificações</div>
-        <!-- ✏️ EDITE: suas certificações reais -->
-        <div class="cert-grid">
-          <div class="cert-item">
-            <span class="cert-icon">🏅</span>
-            <div class="cert-info">
-              <div class="cert-name">Formação em Análise de Dados</div>
-              <div class="cert-org">Xperiun · 2025</div>
-            </div>
-          </div>
-          <div class="cert-item">
-            <span class="cert-icon">🏅</span>
-            <div class="cert-info">
-              <div class="cert-name">SQL para Análise de Dados: Do Básico ao Avançado</div>
-              <div class="cert-org">Udemy · 2024</div>
-            </div>
-          </div>
-          <div class="cert-item">
-            <span class="cert-icon">🏅</span>
-            <div class="cert-info">
-              <div class="cert-name">Business Inteligence com Power BI</div>
-              <div class="cert-org">Senac · 2022</div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+      <div class="service-title">Dashboards comerciais</div>
+      <p class="service-desc">Venda vs. meta, projeção do mês, ranking de vendedores, positivação, carteira de clientes e curva ABC de produtos e marcas.</p>
     </div>
-
-<div class="about-right">
-  <div class="about-photo">
-    <img 
-      src="FOTO.png" 
-      alt="Foto de Israel Mamgnago Elizeu" 
-      class="about-img"
-    >
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6M7 17h4"/></svg></div>
+      <div class="service-title">Dashboards financeiros</div>
+      <p class="service-desc">DRE gerencial, real vs. orçado, margem por produto e cliente, indicadores mensais e acumulados no ano.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+      <div class="service-title">Integração e modelagem de dados</div>
+      <p class="service-desc">Extração com SQL de ERPs e bancos (SAP HANA, Oracle, SQL Server) ou planilhas, modelagem e atualização automática no Power BI Service.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v2"/><path d="M16 3.5a3 3 0 0 1 0 5.8M21 21v-2a4 4 0 0 0-3-3.9"/></svg></div>
+      <div class="service-title">Treinamento e cultura de dados</div>
+      <p class="service-desc">Capacitação da equipe para usar os painéis no dia a dia, controle de acesso e governança para que os números sejam confiáveis.</p>
+    </div>
   </div>
-</div>
-  </div>
-</section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-tag">Ferramentas & Tecnologias</div>
-  <h2 class="section-title">Habilidades técnicas</h2>
-  <p class="section-desc">Stack especializada em análise e visualização de dados, do tratamento ao insight final.</p>
-
-  <!-- ✏️ EDITE: ajuste nomes, ícones e % de proficiência -->
-  <div class="skills-grid">
-
-    <div class="skill-card">
-      <span class="skill-icon">📊</span>
-      <div class="skill-name">Power BI</div>
-      <div class="skill-level">Avançado</div>
-      <div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-title">Diagnóstico</div>
+      <p class="step-desc">Entendo o que o negócio precisa responder e quais dados já existem.</p>
     </div>
-
-    <div class="skill-card">
-      <span class="skill-icon">🧮</span>
-      <div class="skill-name">DAX</div>
-      <div class="skill-level">Avançado</div>
-      <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
+    <div class="step">
+      <div class="step-title">Dados e modelo</div>
+      <p class="step-desc">Extraio, trato e organizo os dados numa base única e confiável.</p>
     </div>
-
-    <div class="skill-card">
-      <span class="skill-icon">🗄️</span>
-      <div class="skill-name">SQL</div>
-      <div class="skill-level">Intermediário-Avançado</div>
-      <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+    <div class="step">
+      <div class="step-title">Painel e validação</div>
+      <p class="step-desc">Desenvolvo o dashboard com storytelling e valido os números com você.</p>
     </div>
-
-    <div class="skill-card">
-      <span class="skill-icon">🔄</span>
-      <div class="skill-name">Power Query (M)</div>
-      <div class="skill-level">Avançado</div>
-      <div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div>
+    <div class="step">
+      <div class="step-title">Entrega e treinamento</div>
+      <p class="step-desc">Publico com atualização automática e treino quem vai usar.</p>
     </div>
-
-    <div class="skill-card">
-      <span class="skill-icon">📋</span>
-      <div class="skill-name">Excel</div>
-      <div class="skill-level">Intermediário-Avançado</div>
-      <div class="skill-bar"><div class="skill-bar-fill" style="width:92%"></div></div>
-    </div>
-
-    <div class="skill-card">
-      <span class="skill-icon">🏗️</span>
-      <div class="skill-name">Modelagem de Dados</div>
-      <div class="skill-level">Avançado</div>
-      <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
-    </div>
-
-    <div class="skill-card">
-      <span class="skill-icon">☁️</span>
-      <div class="skill-name">Azure / Fabric</div>
-      <div class="skill-level">Básico-Intermediário</div>
-      <div class="skill-bar"><div class="skill-bar-fill" style="width:40%"></div></div>
-    </div>
-
   </div>
 </section>
 
@@ -646,151 +420,221 @@
   <div class="section-tag">Trabalhos</div>
   <h2 class="section-title">Projetos em destaque</h2>
   <p class="section-desc">
-    Dashboards e análises desenvolvidos para resolver problemas reais de negócio.
-    <!-- ✏️ EDITE: clique em "Ver dashboard" para apontar para seus links reais -->
+    Dashboards que reproduzem situações reais de negócio, montados com dados fictícios. Clique para explorar a versão interativa.
   </p>
 
   <div class="projects-grid">
 
-    <!-- PROJETO DESTAQUE (opcional — pode remover a classe "featured-card") -->
+    <!-- PROJETO DESTAQUE -->
     <div class="project-card featured-card">
       <div class="project-thumb">
         <div class="featured-badge">Destaque</div>
-        <!-- ✏️ Coloque uma imagem real: <img src="thumb-projeto1.png" style="width:100%;height:100%;object-fit:cover"> -->
-        <img src="PLANEJAMENTO COMERCIAL.png" style="width:100%;height:100%;object-fit:cover">
-        
+        <img src="PLANEJAMENTO%20COMERCIAL.png" alt="Dashboard de Planejamento Comercial">
       </div>
       <div class="project-body">
         <div class="project-tags">
           <span class="tag tag-power-bi">Power BI</span>
           <span class="tag tag-dax">DAX</span>
+          <span class="tag tag-pq">Power Query</span>
           <span class="tag tag-sql">SQL</span>
         </div>
-        <!-- ✏️ EDITE: título, descrição e links do projeto -->
         <div class="project-title">Planejamento Comercial</div>
         <p class="project-desc">
-          Dashboard interativo de Planejamento Comercial, com análise de resultados, comparação entre realizado e orçado, variações acumuladas e filtros dinâmicos por empresa, mês e ano.
+          Acompanhamento diário do desempenho de vendas para gestores comerciais, com visão por gerência, área e vendedor.
         </p>
+        <ul class="project-points">
+          <li>Venda vs. meta com projeção do fechamento do mês e dias úteis restantes</li>
+          <li>Comparação com o mês anterior e com o mesmo mês do ano anterior</li>
+          <li>Positivação, carteira de clientes, clientes novos, perdidos e recuperados</li>
+          <li>Representatividade de marcas com curva ABC / Pareto</li>
+        </ul>
         <div class="project-links">
-          <a href="https://app.powerbi.com/view?r=eyJrIjoiNjA3ZGRiYzEtNGM0YS00MWUzLTk3ZDctZDU4ODE0MjZkODFlIiwidCI6IjQ5MWNmMmU3LWU1NTYtNDgzNi1hMmMxLWNkYWQyNzBjMjVhMSJ9" class="project-link">🔗 Ver dashboard</a>
+          <a href="https://app.powerbi.com/view?r=eyJrIjoiNjA3ZGRiYzEtNGM0YS00MWUzLTk3ZDctZDU4ODE0MjZkODFlIiwidCI6IjQ5MWNmMmU3LWU1NTYtNDgzNi1hMmMxLWNkYWQyNzBjMjVhMSJ9" class="project-link" target="_blank" rel="noopener noreferrer">🔗 Ver dashboard</a>
+          <span class="data-note">Dados fictícios</span>
         </div>
       </div>
     </div>
 
-<!-- PROJETO 2 -->
-<div class="project-card">
-  <div class="project-thumb">
-    <img 
-      src="DRE.png" 
-      alt="Dashboard Análise Financeira DRE Gerencial"
-      style="width:100%; height:100%; object-fit:cover;"
-    >
-  </div>
-
-  <div class="project-body">
-    <div class="project-tags">
-      <span class="tag tag-power-bi">Power BI</span>
-      <span class="tag tag-dax">DAX</span>
+    <!-- PROJETO 2 -->
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="DRE.png" alt="Dashboard Análise Financeira DRE Gerencial">
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag tag-power-bi">Power BI</span>
+          <span class="tag tag-dax">DAX</span>
+        </div>
+        <div class="project-title">Análise Financeira — DRE Gerencial</div>
+        <p class="project-desc">
+          DRE gerencial com real vs. meta, variações mensais e indicadores acumulados no ano, para acompanhar o resultado e agir rápido nos desvios.
+        </p>
+        <div class="project-links">
+          <a href="https://app.powerbi.com/view?r=eyJrIjoiOGZmNzNmNDEtNjQ0MS00M2Y0LTg0MzItY2FjZWViOTQ2NTkxIiwidCI6IjQ5MWNmMmU3LWU1NTYtNDgzNi1hMmMxLWNkYWQyNzBjMjVhMSJ9" class="project-link" target="_blank" rel="noopener noreferrer">🔗 Ver dashboard</a>
+          <span class="data-note">Dados fictícios</span>
+        </div>
+      </div>
     </div>
 
-    <div class="project-title">Análise Financeira — DRE Gerencial</div>
-
-    <p class="project-desc">
-      Dashboard financeiro de Real vs. Meta com análise da DRE, variações mensais, indicadores YTD e comparação entre realizado e orçado para apoiar o acompanhamento de resultados.
-    </p>
-
-    <div class="project-links">
-      <a 
-        href="https://app.powerbi.com/view?r=eyJrIjoiOGZmNzNmNDEtNjQ0MS00M2Y0LTg0MzItY2FjZWViOTQ2NTkxIiwidCI6IjQ5MWNmMmU3LWU1NTYtNDgzNi1hMmMxLWNkYWQyNzBjMjVhMSJ9" 
-        class="project-link featured"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        🔗 Ver dashboard
-      </a>
-    </div>
-  </div>
-</div>
-    
-<!-- PROJETO 3 -->
-<div class="project-card">
-  <div class="project-thumb">
-    <img 
-      src="People.png" 
-      alt="Dashboard de RH People Analytics"
-      style="width:100%; height:100%; object-fit:cover;"
-    >
-  </div>
-
-  <div class="project-body">
-    <div class="project-tags">
-      <span class="tag tag-power-bi">Power BI</span>
-      <span class="tag tag-sql">SQL</span>
+    <!-- PROJETO 3 -->
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="People.png" alt="Dashboard de RH People Analytics">
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag tag-power-bi">Power BI</span>
+          <span class="tag tag-sql">SQL</span>
+        </div>
+        <div class="project-title">RH — People Analytics</div>
+        <p class="project-desc">
+          Turnover, contratações, desligamentos e perfil dos colaboradores em um só lugar, para apoiar decisões de gestão de pessoas.
+        </p>
+        <div class="project-links">
+          <a href="https://app.powerbi.com/view?r=eyJrIjoiYjQ0MWM0MzQtZDhjYS00NmZiLWE0NjktMDMxNDgwYTk4YTBlIiwidCI6IjQ5MWNmMmU3LWU1NTYtNDgzNi1hMmMxLWNkYWQyNzBjMjVhMSJ9" class="project-link" target="_blank" rel="noopener noreferrer">🔗 Ver dashboard</a>
+          <span class="data-note">Dados fictícios</span>
+        </div>
+      </div>
     </div>
 
-    <div class="project-title">Dashboard de RH — People Analytics</div>
-
-    <p class="project-desc">
-      Dashboard de RH com análise de turnover, contratações, desligamentos, perfil dos colaboradores e indicadores estratégicos para apoiar a gestão de pessoas.
-    </p>
-
-    <div class="project-links">
-      <a 
-        href="https://app.powerbi.com/view?r=eyJrIjoiYjQ0MWM0MzQtZDhjYS00NmZiLWE0NjktMDMxNDgwYTk4YTBlIiwidCI6IjQ5MWNmMmU3LWU1NTYtNDgzNi1hMmMxLWNkYWQyNzBjMjVhMSJ9" 
-        class="project-link featured"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        🔗 Ver dashboard
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- PROJETO 4 -->
-<div class="project-card">
-  <div class="project-thumb">
-    <img 
-      src="Vendas.png" 
-      alt="Dashboard de Vendas e Financeiro"
-      style="width:100%; height:100%; object-fit:cover;"
-    >
-  </div>
-
-  <div class="project-body">
-    <div class="project-tags">
-      <span class="tag tag-power-bi">Power BI</span>
-      <span class="tag tag-excel">Excel</span>
+    <!-- PROJETO 4 -->
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="Vendas.png" alt="Dashboard de Vendas e Financeiro">
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag tag-power-bi">Power BI</span>
+          <span class="tag tag-excel">Excel</span>
+        </div>
+        <div class="project-title">Vendas e Margem</div>
+        <p class="project-desc">
+          Receita, margem bruta e margem percentual por produto, fornecedor e equipe comercial, para descobrir onde a empresa ganha e onde perde dinheiro.
+        </p>
+        <div class="project-links">
+          <!-- Trocar pelo link de "Publicar na Web" (app.powerbi.com/view?r=...) quando estiver pronto -->
+          <span class="project-link disabled">Versão interativa em breve</span>
+          <span class="data-note">Dados fictícios</span>
+        </div>
+      </div>
     </div>
 
-    <div class="project-title">Dashboard de Vendas e Financeiro</div>
+  </div>
+</section>
 
-    <p class="project-desc">
-      Dashboard de vendas com análise de receita, margem bruta, margem percentual, desempenho por produto, fornecedor e equipe comercial.
-    </p>
+<!-- ABOUT -->
+<section id="about" style="background: var(--surface);">
+  <div class="about-wrap">
+    <div class="about-left">
+      <div class="section-tag">Sobre mim</div>
+      <h2 class="section-title">Quem sou eu</h2>
+      <p class="about-text">
+        Sou o Israel. Comecei na área de negócio — financeiro e trade marketing — antes de ir para a tecnologia. Por isso falo a língua de quem usa o relatório, não só de quem o constrói.
+      </p>
+      <p class="about-text">
+        Hoje lidero sistemas e dados em uma distribuidora, onde conduzi a implantação do Power BI corporativo e da cultura de dados. Em paralelo, desenvolvo projetos de BI para outras empresas.
+      </p>
+      <p class="about-text">
+        Acredito que um bom dashboard não é apenas bonito — ele precisa responder às perguntas do negócio antes mesmo que alguém as faça. Por isso, meu processo começa sempre no entendimento do problema, não na ferramenta.
+      </p>
+      <p class="about-text" style="margin-bottom:0;">
+        Graduado em Administração pela Doctum (2023) e pós-graduando em MBA em Gestão de Estratégia Empresarial pela Doctum.
+      </p>
 
-    <div class="project-links">
-      <a 
-        href="https://app.powerbi.com/reportEmbed?reportId=a1ac1a83-b06a-41ae-a250-e0ba2a5cded0&autoAuth=true&ctid=491cf2e7-e556-4836-a2c1-cdad270c25a1" 
-        class="project-link featured"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        🔗 Ver dashboard
-      </a>
+      <div style="margin-top: 3rem;">
+        <div class="section-tag">Certificações</div>
+        <div class="cert-grid">
+          <div class="cert-item">
+            <span class="cert-icon">🏅</span>
+            <div>
+              <div class="cert-name">Formação em Análise de Dados</div>
+              <div class="cert-org">Xperiun · 2025</div>
+            </div>
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">🏅</span>
+            <div>
+              <div class="cert-name">SQL para Análise de Dados: Do Básico ao Avançado</div>
+              <div class="cert-org">Udemy · 2024</div>
+            </div>
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">🏅</span>
+            <div>
+              <div class="cert-name">Business Intelligence com Power BI</div>
+              <div class="cert-org">Senac · 2022</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-right">
+      <div class="about-photo">
+        <img src="FOTO.png" alt="Foto de Israel Magnago Elizeu">
+      </div>
     </div>
   </div>
-</div>
-    
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background: var(--bg);">
+  <div class="section-tag">Ferramentas & Tecnologias</div>
+  <h2 class="section-title">Habilidades técnicas</h2>
+  <p class="section-desc">Do tratamento do dado ao insight final.</p>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <span class="skill-icon">📊</span>
+      <div class="skill-name">Power BI</div>
+      <div class="skill-level">Avançado</div>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🧮</span>
+      <div class="skill-name">DAX</div>
+      <div class="skill-level">Avançado</div>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🔄</span>
+      <div class="skill-name">Power Query (M)</div>
+      <div class="skill-level">Avançado</div>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🏗️</span>
+      <div class="skill-name">Modelagem de Dados</div>
+      <div class="skill-level">Avançado</div>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🗄️</span>
+      <div class="skill-name">SQL (SQL Server, Oracle, SAP HANA)</div>
+      <div class="skill-level">Intermediário-Avançado</div>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">📋</span>
+      <div class="skill-name">Excel</div>
+      <div class="skill-level">Intermediário-Avançado</div>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:92%"></div></div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">☁️</span>
+      <div class="skill-name">Power BI Service / Fabric</div>
+      <div class="skill-level">Básico-Intermediário</div>
+      <div class="skill-bar"><div class="skill-bar-fill" style="width:40%"></div></div>
+    </div>
+  </div>
 </section>
 
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-tag">Trajetória</div>
   <h2 class="section-title">Experiência profissional</h2>
-  <p class="section-desc">Histórico de atuação em análise e visualização de dados.</p>
+  <p class="section-desc">Da área de negócio à liderança de sistemas e dados.</p>
 
-  <!-- ✏️ EDITE: substituia pelas suas experiências reais -->
   <div class="timeline">
 
     <div class="timeline-item">
@@ -798,14 +642,29 @@
         <div class="timeline-dot" style="background: var(--accent2); box-shadow: 0 0 0 1px var(--accent2);"></div>
       </div>
       <div class="timeline-right">
-        <div class="exp-period">Mar 2025 – Presente</div>
-        <div class="exp-title">Supervisor de TI - Sistemas</div>
-        <div class="exp-company">Unilider Distribuidora SA</div>
+        <div class="exp-period">Atual</div>
+        <div class="exp-title">Consultor de Business Intelligence</div>
+        <div class="exp-company">Projetos independentes</div>
         <ul class="exp-desc">
-          <li>Supervisão de sistemas corporativos</li>
-          <li>Gerenciamento de acessos e chamados, documentando processos, acompanhando integrações e bases de dados</li>
-          <li>Extração, tratamento, análise e validação de informações</li>
-          <li>Apoiar a construção de relatórios e indicadores para melhoria da gestão</li>
+          <li>Implantação de dashboards em Power BI de ponta a ponta: levantamento, dados, modelagem, painel e treinamento</li>
+          <li>Projetos entregues na área comercial para empresas de diferentes segmentos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-dot" style="background: var(--accent2); box-shadow: 0 0 0 1px var(--accent2);"></div>
+      </div>
+      <div class="timeline-right">
+        <div class="exp-period">Mar 2025 – Presente</div>
+        <div class="exp-title">Supervisor de TI — Sistemas e Dados</div>
+        <div class="exp-company">Unilider Distribuidora</div>
+        <ul class="exp-desc">
+          <li>Gestão das equipes de força de vendas, e-commerce, ERP e dados</li>
+          <li>Condução do projeto de implantação da cultura de dados na empresa</li>
+          <li>Dashboards em Power BI para diferentes áreas e melhoria dos processos comerciais</li>
+          <li>Views e fluxos de dados para consumo seguro no Power BI</li>
         </ul>
       </div>
     </div>
@@ -817,11 +676,27 @@
       <div class="timeline-right">
         <div class="exp-period">Jan 2024 – Fev 2025</div>
         <div class="exp-title">Analista de Dados</div>
-        <div class="exp-company">Unilider Distribuidora SA</div>
+        <div class="exp-company">Unilider Distribuidora</div>
         <ul class="exp-desc">
-          <li>Criação de relatórios analíticos em Power BI e Excel</li>
-          <li>Extração e tratamento de dados via SQL Server e Power Query</li>
-          <li>Automatização de relatórios recorrentes</li>
+          <li>Dashboards e indicadores em Power BI, publicados e gerenciados no Power BI Service</li>
+          <li>Consultas SQL e views em Oracle, SAP HANA e SQL Server</li>
+          <li>Implantação do projeto de dados corporativo e processos de governança</li>
+          <li>Aquisição e implantação das licenças Power BI PPU e Microsoft Fabric</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-right">
+        <div class="exp-period">Dez 2019 – Dez 2023</div>
+        <div class="exp-title">Trade Marketing (Assistente e Analista)</div>
+        <div class="exp-company">Unilider Distribuidora</div>
+        <ul class="exp-desc">
+          <li>Acompanhamento de indicadores de desempenho comercial</li>
+          <li>Treinamento da equipe de vendas em programas de performance</li>
         </ul>
       </div>
     </div>
@@ -833,18 +708,17 @@
 <section id="contact">
   <div class="contact-wrapper">
     <div class="section-tag" style="text-align:center; display:block;">Vamos conversar</div>
-    <h2 class="section-title">Entre em contato</h2>
+    <h2 class="section-title">Quer enxergar melhor os números da sua empresa?</h2>
     <p style="color:var(--muted); font-weight:300;">
-      Aberto a novos desafios, projetos freelance e parcerias. Me envie uma mensagem!
+      Me conte o que você precisa acompanhar — vendas, metas, margem, financeiro — e eu retorno para entendermos juntos o melhor caminho.
     </p>
 
-    <!-- ✏️ EDITE: seus links reais -->
     <div class="contact-links">
-      <a href="mailto:israelmagnago.e@gmail.com" class="contact-link">
+      <a href="mailto:israelmagnago.e@gmail.com?subject=Projeto%20de%20BI%20%2F%20Power%20BI" class="contact-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
         E-mail
       </a>
-      <a href="https://www.linkedin.com/in/israel-magnago-elizeu-710560142/" target="_blank" class="contact-link">
+      <a href="https://www.linkedin.com/in/israel-magnago-elizeu-710560142/" target="_blank" rel="noopener noreferrer" class="contact-link">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
         LinkedIn
       </a>
@@ -854,8 +728,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Israel Magnago Elizeu. Portfólio de Análise de Dados.</p>
-  <p style="font-size:0.75rem;">Feito com HTML puro · Hospede gratuitamente no GitHub Pages</p>
+  <p>© 2026 Israel Magnago Elizeu · Business Intelligence com Power BI</p>
+  <p>Serra · ES · Atendimento em todo o Brasil</p>
 </footer>
 
 </body>
